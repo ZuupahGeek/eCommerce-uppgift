@@ -14,39 +14,33 @@
         <div class="col-lg-3 col-md-2 mb-2">
 
           <a href="" class="waves-effect waves-light"><img
-              src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/10.jpg" class="img-fluid"
+              :src="product.image" class="img-fluid"
               alt=""></a>
 
           <div class="card">
             <div class="card-body">
 
-              <p class="mb-1"><a href="" class="font-weight-bold black-text">Sony RX-410</a></p>
+              <p class="mb-1"><a href="" class="font-weight-bold black-text">{{ product.name }}</a></p>
 
-              <p class="mb-1"><small class="mr-1"><s>$599</s></small><strong>$299</strong></p>
+              <p class="mb-1"><small class="mr-1"><s></s></small><strong>{{ product.price }} sek</strong></p>
 
               <div class="amber-text fa-xs mb-1">
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
                 <i class="fas fa-star-half-alt"></i>
               </div>
 
               <button type="button" class="btn btn-black btn-rounded btn-sm px-3">Buy Now</button>
-              <router-link to="/product/details"><button type="button" class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect">Details</button></router-link>
+              <router-link :to="{name: 'ProductDetails', params: {id: product._id}}"><button type="button" class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect">Details</button></router-link>
 
             </div>
           </div>
-
         </div>
-        <!--Grid column-->
-
       </div>
-      <!--Grid row-->
-
-
     </section>
-    <!--Section: Content-->
+
 
 
   </div>
@@ -55,7 +49,8 @@
 
 <script>
 export default {
-
+  name: 'Product',
+  props: ['product']
 }
 </script>
 

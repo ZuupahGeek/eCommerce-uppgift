@@ -2,7 +2,7 @@ import axios from 'axios'
 
 
 
-export default new Vuex.Store({
+export default {
   state: {
     products: [],
     product: null
@@ -12,22 +12,23 @@ export default new Vuex.Store({
     product: state => state.product
   },
   mutations: {
-    GET_PRODUCTS: (state, products) => {
+    SET_PRODUCTS: (state, products) => {
       state.products = products
     },
-    GET_PRODUCT: (state, product) => {
+    SET_PRODUCT: (state, product) => {
       state.product = product
     }
   },
   actions: {
+    // Hämta produkter, samt en enstaka produkt från API. Enstaka, via produktens _id
     getProducts: async ({commit}) => {
-      const res = await axios.get('http://localhost:3000/products')
-      commit('GET_PRODUCTS', res.data)
+      const res = await axios.get('http://localhost:9999/api/products')
+      commit('SET_PRODUCTS', res.data)
     },
     getOneProduct: async ({commit}, _id) => {
-      const res = await axios.get('http://localhost:3000/products/' + _id)
-      commit('GET_PRODUCT', res.data)
+      const res = await axios.get(`http://localhost:9999/api/products/${_id}`)
+      commit('SET_PRODUCT', res.data)
     }
   }
 
-})
+}

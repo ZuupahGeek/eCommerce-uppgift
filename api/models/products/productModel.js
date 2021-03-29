@@ -19,7 +19,8 @@ exports.getProduct = (req, res) => {
 
       if(result) {
         Product.findById(req.params.id)
-        return res.status(200).json(product)
+        .then(product => res.status(200).json(product))
+        .catch(err => res.status(500).json(err))
       } else {
         return res.status(404).json({
           statusCode: 400,

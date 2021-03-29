@@ -15,7 +15,7 @@
 
               <div class=" text-center text-md-left shadow" role="listbox">
                 <div>
-                  <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/17.jpg"
+                  <img :src="product.image"
                     alt="Product" class="img-fluid">
                 </div>
             </div>
@@ -26,12 +26,12 @@
           <div class="col-lg-5 text-center text-md-left">
 
             <h2 class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">
-              <strong>Sony headphones</strong>
+              <strong>{{ product.name }}</strong>
             </h2>
             <span class="badge badge-danger product mb-4 ml-xl-0 ml-4">bestseller</span>
             <h3 class="h3-responsive text-center text-md-left mb-5 ml-xl-0 ml-4">
               <span class="red-text font-weight-bold">
-                <strong>$49</strong>
+                <strong>{{ product.price }}</strong>
               </span>
             </h3>
 
@@ -56,11 +56,7 @@
                 <div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1"
                   data-parent="#accordionEx">
                   <div class="card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
-                    3 wolf moon officia aute,
-                    non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf
-                    moon
-                    tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+                   {{ product.desc }}
                   </div>
                 </div>
               </div>
@@ -151,8 +147,21 @@
 </template>
 
 <script>
-export default {
+import { mapGetters, mapActions} from 'vuex'
 
+
+
+export default {
+  props: ['id'],
+  computed: {
+    ...mapGetters(['product'])
+  },
+  methods: {
+    ...mapActions(['getOneProduct'])
+  },
+  created() {
+    this.getOneProduct(this.id)
+  }
 }
 </script>
 
