@@ -8,9 +8,9 @@
           <div><small> {{ item.quantity }} x {{ item.product.price }} sek</small></div>
           <div id="buttons">
             <div class="btn-group btn-group-sm me-2" role="group" area-label="quantity">
-              <button class="btn btn-dark btn-cart mr-2" @click.stop="">-</button>
-              <button class="btn btn-dark btn-cart mr-2" @click.stop="">+</button>
-              <button class="btn btn-danger btn-cart" @click.stop=""><i class="fas fa-trash-alt"></i></button>
+              <button class="btn btn-dark btn-cart mr-2" @click.stop="subtractQuantity(item)">-</button>
+              <button class="btn btn-dark btn-cart mr-2" @click.stop="item.quantity += 1">+</button>
+              <button class="btn btn-danger btn-cart" @click.stop="deleteCartItem(item)"><i class="fas fa-trash-alt"></i></button>
             </div>
     
           </div>
@@ -23,8 +23,22 @@
 </template>
 
 <script>
+import {mapActions, mapGetters} from 'vuex'
+
+
 export default {
-  props: ['item']
+  props: ['item'],
+  data() {
+    return {
+      quantity: 1
+    }
+  },
+  methods: {
+    ...mapActions(['deleteCartItem', 'subtractQuantity'])
+  },
+  computed: {
+    ...mapGetters(['shoppingCart'])
+  }
 }
 </script>
 

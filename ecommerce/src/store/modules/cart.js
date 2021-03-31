@@ -22,16 +22,39 @@ export default {
         return
       } else {
         state.cart.push({product, quantity})
+      } 
+    },
+    DELETE_CART_ITEM: (state, product) => {
+      const i = state.cart.map(item => item._id).indexOf(product)
+      state.cart.splice(i, 1)  
+    },
+    SUBTRACT_QUANTITY: (state, {product, quantity}) => {
+      let exists = state.cart.find(item => item.product._id === product._id)
+      exists.quantity == quantity
+      if (exists.quantity > 1){
+      exists.quantity -= 1
+      // console.log('minskar quantity')
+    } else {
+        const i = state.cart.map(item => item._id).indexOf(product)
+        state.cart.splice(i, 1)  
+        // console.log('ta bort')
       }
-     
-    }
+    } 
+
   },
+    
+  
   actions: {
     addToCart: ({commit}, {product, quantity}) => {
       commit('ADD_TO_CART', {product, quantity})
     },
-    subtractQuantity: ({commit}, quantity) => {
-      commit('SUBTRACT_QUANTITY', quantity)
+    subtractQuantity: ({commit}, {product, quantity}) => {
+     
+        commit('SUBTRACT_QUANTITY', {product, quantity})
+      
+    }, 
+    deleteCartItem: ({commit}, {product, quantity}) => {
+      commit('DELETE_CART_ITEM', {product, quantity})
     }
   },
 }
