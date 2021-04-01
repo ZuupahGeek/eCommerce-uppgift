@@ -1,21 +1,16 @@
 <template>
   <div>
-    <div class="container my-5 py-5">
 
 
     <!--Section: Content-->
     <section class="text-center">
 
-
-      <!--Grid row-->
-      <div class="row">
-
         <!--Grid column-->
-        <div class="col-lg-3 col-md-2 mb-2">
+        <div class="col">
 
-          <a href="" class="waves-effect waves-light"><img
+          <router-link href="" class="waves-effect waves-light" :to="{name: 'ProductDetails', params: {id: product._id}}"><img
               :src="product.image" class="img-fluid"
-              alt=""></a>
+              alt=""></router-link>
 
           <div class="card">
             <div class="card-body">
@@ -24,34 +19,36 @@
 
               <p class="mb-1"><small class="mr-1"><s></s></small><strong>{{ product.price }} sek</strong></p>
 
-              <div class="amber-text fa-xs mb-1">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-                <i class="fas fa-star-half-alt"></i>
-              </div>
 
-              <button type="button" class="btn btn-black btn-rounded btn-sm px-3">Buy Now</button>
+              <button type="button" class="btn btn-black btn-rounded btn-sm px-3" @click="addToCart({product, quantity})">Buy Now</button>
               <router-link :to="{name: 'ProductDetails', params: {id: product._id}}"><button type="button" class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect">Details</button></router-link>
 
             </div>
           </div>
         </div>
-      </div>
     </section>
 
 
 
   </div>
-  </div>
+
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'Product',
-  props: ['product']
+  props: ['product'],
+  data() {
+    return {
+      quantity: 1
+    }
+  },
+  methods: {
+     ...mapActions(['addToCart'])
+  }
 }
+  
 </script>
 
 <style>

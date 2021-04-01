@@ -1,6 +1,10 @@
 <template>
   <div>
-    <product v-for="product in products" :key="product._id" :product="product"/>
+    <div class="container py-4">
+      <div class="row row-cols-1 row-cols-md-3">
+       <product v-for="product in products" :key="product._id" :product="product"/>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -13,6 +17,8 @@ export default {
   },
   computed: {
     ...mapGetters(['products'])
+  },
+  methods: {
   }
 }
 </script>
