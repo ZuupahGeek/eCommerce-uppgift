@@ -1,17 +1,27 @@
 <template>
   <div id="app">
       <navbar />
-
-    <router-view/>
-  </div>
+   <router-view/>
+    </div>
+   
 </template>
 
 <script>
+import { mapActions} from 'vuex'
 import Navbar from './components/navigation/Navbar.vue'
+
 
 export default {
   components: {
-    Navbar
+    Navbar,
+  },
+  methods: {
+    ...mapActions(['checkUser'])
+  },
+  computed: {
+  },
+  created() {
+    this.checkUser
   }
  
 }

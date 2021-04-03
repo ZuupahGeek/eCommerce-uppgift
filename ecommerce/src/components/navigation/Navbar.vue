@@ -23,10 +23,22 @@
       
       </ul>
       <ul class="navbar-nav ml-auto nav-flex-icons">
-        <li class="nav-item">
-          <a class="nav-link waves-effect waves-light">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-user-ninja"></i>
           </a>
+
+          <div class="dropdown-menu dropdown-menu-right dropdown-default cart-width" aria-labelledby="navbarDropdownMenuLink-333">
+              <div v-if="!loggedIn">
+                <p>You are not logged in</p>
+                <router-link to="/login">Log in</router-link>
+              </div>
+              <div v-else>
+               <a  @click="logout()"> Logout </a>
+                </div>
+        
+          </div>
+
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
@@ -51,7 +63,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import ShoppingCart from "../shoppingCart/ShoppingCart.vue"
 
 export default {
@@ -59,7 +71,10 @@ export default {
     ShoppingCart 
     },
     computed: {
-      ...mapGetters(['cartItemCount'])
+      ...mapGetters(['cartItemCount', 'loggedIn'])
+    },
+    methods: {
+      ...mapActions(['logout'])
     }
 
 }

@@ -4,6 +4,9 @@ export default {
   },
   getters: {
     shoppingCart: state => { 
+      if(sessionStorage.getItem('cart') !== null) {
+        state.cart = JSON.parse(sessionStorage.getItem('cart'))
+      }
       return state.cart
     },
     cartItemCount: state => {
@@ -22,23 +25,34 @@ export default {
         return
       } else {
         state.cart.push({product, quantity})
+        sessionStorage.setItem('cart', JSON.stringify(state.cart))
       } 
     },
     DELETE_CART_ITEM: (state, product) => {
       const i = state.cart.map(item => item._id).indexOf(product)
       state.cart.splice(i, 1)  
+      sessionStorage.setItem('cart', JSON.stringify(state.cart))
     },
     SUBTRACT_QUANTITY: (state, {product, quantity}) => {
       let exists = state.cart.find(item => item.product._id === product._id)
       exists.quantity == quantity
       if (exists.quantity > 1){
       exists.quantity -= 1
-      // console.log('minskar quantity')
+      sessionStorage.setItem('cart', JSON.stringify(state.cart))
+    
     } else {
         const i = state.cart.map(item => item._id).indexOf(product)
         state.cart.splice(i, 1)  
-        // console.log('ta bort')
+        sessionStorage.setItem('cart', JSON.stringify(state.cart))
+      
       }
+    }, 
+    ADD_QUANTITY: (state, {product, quantity}) => {
+      let exists = state.cart.find(item => item.product._id === product._id)
+      exists.quantity == quantity
+      exists.quantity += 1
+      sessionStorage.setItem('cart', JSON.stringify(state.cart))
+    
     } 
 
   },
@@ -53,6 +67,9 @@ export default {
         commit('SUBTRACT_QUANTITY', {product, quantity})
       
     }, 
+    addQuantity: ({commit}, {product, quantity}) => {
+      commit('ADD_QUANTITY', {product, quantity})
+    },
     deleteCartItem: ({commit}, {product, quantity}) => {
       commit('DELETE_CART_ITEM', {product, quantity})
     }

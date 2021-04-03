@@ -9,7 +9,7 @@
           <div id="buttons">
             <div class="btn-group btn-group-sm me-2" role="group" area-label="quantity">
               <button class="btn btn-dark btn-cart mr-2" @click.stop="subtractQuantity(item)">-</button>
-              <button class="btn btn-dark btn-cart mr-2" @click.stop="item.quantity += 1">+</button>
+              <button class="btn btn-dark btn-cart mr-2" @click.stop="addQuantity(item)">+</button>
               <button class="btn btn-danger btn-cart" @click.stop="deleteCartItem(item)"><i class="fas fa-trash-alt"></i></button>
             </div>
     
@@ -34,7 +34,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['deleteCartItem', 'subtractQuantity'])
+    ...mapActions(['deleteCartItem', 'subtractQuantity', 'addQuantity'])
   },
   computed: {
     ...mapGetters(['shoppingCart'])
