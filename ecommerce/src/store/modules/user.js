@@ -48,7 +48,7 @@ export default {
       await axios.post('http://localhost:9999/api/users/register', _user)
       dispatch('login', {user})
     },
-    // Logga in användar
+    // Logga in användare
     login: ({commit}, payload) => {
       axios.post('http://localhost:9999/api/users/login', payload.user)
       .then(res => {
