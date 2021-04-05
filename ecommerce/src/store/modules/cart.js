@@ -1,7 +1,7 @@
 
 export default {
   state: {
-    cart: []
+    cart: [],
   },
   getters: {
     shoppingCart: state => { 

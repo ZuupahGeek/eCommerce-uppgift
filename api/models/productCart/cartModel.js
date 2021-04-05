@@ -46,19 +46,8 @@ exports.createOrder = (req, res) => {
         })
      }
 
-      // const newCart = new Cart ({
-      //     quantity:   req.body.quantity,
-      //     name:       req.body.name,
-      //     short:      req.body.short,
-      //     desc:       req.body.desc,
-      //     price:      req.body.price,
-      //     image:      req.body.image 
-      // })
-
       const newOrder = new Order ({
-        orderNumber:   req.body.orderNumber,
-        costumerID:    req.body.costumerID,
-        count:         req.body.count,
+        customerID:    req.body.customerID,
         totalPrice:    req.body.totalPrice,
         cart:          req.body.cart
       })

@@ -13,11 +13,9 @@ const mongoDB = require('mongoose');
 // });
 
 const orderSchema = mongoDB.Schema({
-  orderNumber: {type: Number, required: false},
-  customerID: {type: Number, required: false},
-  count: {type: Number, required: false},
-  totalPrice: {type: Number, required: false},
-  cart: []
+  customerID:   {type: String, required: false},
+  totalPrice:   {type: Number, required: false},
+  cart:         {type: Array}
 })
 
 // module.exports = mongoDB.model('Cart', cartSchema);

@@ -35,6 +35,7 @@
               </div>
               <div v-else>
                <a  @click="logout()"> Logout </a>
+               <router-link to="/orders">Orders</router-link>
                 </div>
         
           </div>

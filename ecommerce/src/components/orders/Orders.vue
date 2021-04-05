@@ -1,11 +1,12 @@
 <template>
-  <div>
-    <order v-for="order in orders" :key="order._id" order="order" />
+  <div class="container">
+    <h3>Tidsbrist, så det här var det bästa jag hann åstadkomma med de sparade ordrarna... Enjoy</h3>
+    <order v-for="order in orders" :key="order._id" :order="order" />
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 import Order from './Order'
 export default {
   components: {
@@ -14,12 +15,8 @@ export default {
   computed: {
     ...mapGetters(['orders'])
   },
-  methods: {
-    ...mapActions(['getOrders'])
-  },
-  created() {
-    this.getOrders()
-  }
+  
+  
 }
 </script>
 

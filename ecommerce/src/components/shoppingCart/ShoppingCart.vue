@@ -1,5 +1,6 @@
 <template>
   <div>
+    
     <!-- om det inte finns något i arrayen, ska de stå att det är tomt -->
     <cart-item v-for="item in shoppingCart" :key="item.product.id" :item="item" />
 
@@ -11,11 +12,12 @@
 
     <!-- totalt pris och gå till kassan -->
     <div class="">
-      <div>
+      <div v-if="shoppingCart.length > 1">
         <div class="total-price"></div>
-        <button @click="saveOrder()" class="btn bg-orange">Save order</button>
+        <button @click="createOrder()" class="btn bg-orange">Save order</button>
       </div>
     </div>
+   
   </div>
 </template>
 
@@ -23,18 +25,29 @@
 import {mapActions, mapGetters} from 'vuex'
 import CartItem from './CartItem.vue'
 export default {
+  data() {
+    return {
+      order: {
+        costumerID: this.userID,
+        count: this.cartItemCount,
+        totalPrice: 3,
+        cart: this.shoppingCart
+      }
+    }
+  },
   components: {
     CartItem
   },
   computed: {
-    ...mapGetters(['shoppingCart'])
+    ...mapGetters(['shoppingCart', 'userID', 'cartItemCount'])
   },
   methods: {
-    ...mapActions(['saveOrder'])
+    ...mapActions(['createOrder']),
   },
   created() {
-    this.saveOrder(this.shoppingCart)
-  }
+    console.log(this.shoppingCart, this.cartItemCount, this.userID)
+  },
+
 }
 </script>
 

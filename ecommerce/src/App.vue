@@ -21,7 +21,7 @@ export default {
   computed: {
   },
   created() {
-    this.checkUser
+    this.checkUser()
   }
  
 }
