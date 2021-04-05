@@ -13,13 +13,14 @@
     <div class="">
       <div>
         <div class="total-price"></div>
+        <button @click="saveOrder()" class="btn bg-orange">Save order</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 import CartItem from './CartItem.vue'
 export default {
   components: {
@@ -27,6 +28,12 @@ export default {
   },
   computed: {
     ...mapGetters(['shoppingCart'])
+  },
+  methods: {
+    ...mapActions(['saveOrder'])
+  },
+  created() {
+    this.saveOrder(this.shoppingCart)
   }
 }
 </script>

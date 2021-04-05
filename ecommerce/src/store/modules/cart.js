@@ -1,3 +1,4 @@
+
 export default {
   state: {
     cart: []
@@ -73,5 +74,6 @@ export default {
     deleteCartItem: ({commit}, {product, quantity}) => {
       commit('DELETE_CART_ITEM', {product, quantity})
     }
+    
   },
 }

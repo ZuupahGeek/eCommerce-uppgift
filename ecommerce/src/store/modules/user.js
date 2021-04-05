@@ -8,7 +8,7 @@ export default {
   },
   getters: {
     loggedIn: state => state.loggedIn
-  },
+    },
   mutations: {
     SET_USER: (state, token) => { // om det finns en token, loggas man in, annars inte
  
